@@ -1,0 +1,179 @@
+/* CSS Reset */
+
+* {
+	box-sizing: border-box;
+}
+
+body,
+html {
+	overflow-x: hidden;
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 62.5%;
+	margin: 0;
+	padding: 0;
+}
+
+// Mixin 
+@mixin flex_box($align_items, $just_content) {
+	display: flex;
+	align-items: $align_items;
+	justify-content: $just_content;
+}
+
+// Header 
+.header {
+	background-color: #25CCF7;
+	height: 4rem;
+	z-index: 10;
+	position: fixed;
+	width: 100%;
+}
+
+// Navigation Bar 
+.sidebar>ul {
+	@include flex_box(center, center);
+	z-index: 10;
+	position: absolute;
+	left: 2rem;
+	top: 0px;
+	margin-top: 1.5rem;
+	margin-bottom: 0px;
+	li {
+		list-style: none;
+		a {
+			text-decoration: none;
+			font-size: 1.2rem;
+			text-transform: uppercase;
+			margin: 0rem 1rem;
+			padding: .5rem 1rem;
+			color: #fff;
+			font-weight: bold;
+			transition: all .3s ease-in-out;
+			border-radius: .3rem;
+			&:hover {
+				color: #25CCF7;
+				background: #fff;
+			}
+		}
+	}
+}
+
+// CSS for Toggle menu navigation bar
+@media (min-width:240px) and (max-width:1024px) {
+	.sidebar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 20rem;
+		margin-top: 4rem;
+		background: rgba(255, 255, 255, 0);
+		z-index: 20;
+    transform: translateX(-20rem);
+    transition: transform 250ms ease-in-out ;
+		ul {
+			display: block;
+			position: relative;
+			margin-top: 0rem;
+			left: 0rem;
+			padding-inline-start: 0rem;
+			li {
+				display: block;
+				padding: 0rem;
+				// border-bottom: 1px solid #fff;
+        a{
+          margin: 0rem 0rem;
+          padding: 1.5rem 1rem;
+          text-align: center;
+          display: block;
+          border-radius: 0rem;
+		  &:hover{
+			  background: transparent;
+		  }
+        }
+			}
+		}
+	}
+
+  #sideBarToggle:checked ~ .sidebar{
+    transform: translateX(0rem);
+  }
+
+  .sideBarIconToggle{
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    top: 1rem;
+    left: 2rem;
+    z-index: 20;
+    cursor: pointer;
+    .spinner{
+      height: .3rem;
+      background: #fff;
+      transition: all .3s ease-in-out;
+    }
+    .middle_spinner,.bottom_spinner{
+      margin-top: .3rem;
+    }
+  }
+
+  #sideBarToggle:checked ~ .sideBarIconToggle .middle_spinner{
+    opacity: 0;
+  }
+
+  #sideBarToggle:checked ~ .sideBarIconToggle .top_spinner{
+    transform: rotate(135deg);
+    margin-top: .8rem;
+
+  }
+  #sideBarToggle:checked ~ .sideBarIconToggle .bottom_spinner{
+    transform: rotate(-135deg);
+    margin-top: -.9rem;
+  }
+}
+
+// Slider 
+.swiper {
+	width: 100%;
+	height: 100%;
+	font-size: .8rem;
+  top: 45px;
+  margin-top: 0px;
+  margin-top: 0rem;
+	display: block;
+	.swiper-wrapper {
+		.swiper-slide {
+			text-align: center;
+			font-size: 1.8rem;
+			background: rgb(121, 89, 89);
+			/* Center slide text vertically */
+			@include flex_box(center, center);
+			img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+}
+
+// Slider text 
+
+// .text-wrapper{
+// 	position: relative;
+// 	top: 0;
+// 	left:-90rem;
+// }
+
+
+p {
+	font-size: 1.56rem;
+  	margin-top: 4rem;
+  	padding: 2rem;
+}
